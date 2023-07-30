@@ -21,6 +21,7 @@ function App() {
         trick={down}
         command={() => "DOWN"}
         rest={sleep(3)}
+        owner="Ember"
       />
       <Header
         title={"cookies for"}
@@ -30,6 +31,7 @@ function App() {
         trick={speak}
         command={() => "SPEAK"}
         rest={sleep(5)}
+        owner="EmJhey"
       />
       <Body text="I am the body..." text2="I am number one..." />
       <Body2 />

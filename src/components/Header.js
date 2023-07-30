@@ -2,6 +2,10 @@ import React from "react";
 import logo from "../logo.svg";
 
 export class Header extends React.Component {
+  state = {
+    owner: this.props.owner,
+  };
+
   render() {
     return (
       <header className="App-header">
@@ -15,14 +19,7 @@ export class Header extends React.Component {
           {this.props.thing.name} for {this.props.trick()}
         </p>
         <p>{this.props.rest}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Owner: {this.state.owner}</p>
       </header>
     );
   }
