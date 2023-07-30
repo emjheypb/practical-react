@@ -1,6 +1,7 @@
 import "./App.css";
 import { Header } from "./components/Header";
 import Body, { Body2, Body3 } from "./components/Body";
+import { Counter } from "./components/Counter";
 
 function App() {
   const down = () => "laying down!";
@@ -33,6 +34,8 @@ function App() {
       <Body text="I am the body..." text2="I am number one..." />
       <Body2 />
       <Body3 />
+      <Counter initialCount={0} />
+      <Counter initialCount={10} />
     </div>
   );
 }
