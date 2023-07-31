@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../logo.svg";
 
 export class Counter extends React.Component {
   constructor(props) {
@@ -26,8 +25,8 @@ export class Counter extends React.Component {
     return (
       <div>
         <div>count: {this.state.count} </div>
-        <button onClick={this.incrementCount}>+ 1</button>
         <button onClick={this.decrementCount}>- 1</button>
+        <button onClick={this.incrementCount}>+ 1</button>
       </div>
     );
   }
