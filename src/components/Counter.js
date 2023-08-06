@@ -1,12 +1,24 @@
 import React from "react";
 
-export class Counter extends React.Component {
+export default class Counter extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       count: props.initialCount,
     };
+  }
+
+  // react special function
+  // needs to be a class component
+  componentWillUnmount() {
+    console.log("Unmounting...");
+  }
+
+  // react special function
+  // needs to be a class component
+  componentDidMount() {
+    console.log("Mounting...");
   }
 
   incrementCount = () => {
