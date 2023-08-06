@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./App.css";
 import ImageSlider from "./components/ImageSlider";
 import Counter from "./components/Counter";
+import MyForm from "./components/MyForm";
 
 class App extends Component {
   state = {
@@ -15,21 +16,9 @@ class App extends Component {
   };
 
   render() {
-    const buttonText = this.state.visible ? "HIDE COUNTER" : "SHOW COUNTER";
-
-    const body = this.state.visible ? (
-      <ImageSlider />
-    ) : (
-      <Counter initialCount={0} />
-    );
-
     return (
       <div className="App">
-        {/* {body} */}
-        <div className={this.state.visible ? "visible" : "hidden"}>
-          <Counter initialCount={0} />
-        </div>
-        <button onClick={this.toggleVisibile}>{buttonText}</button>
+        <MyForm />
       </div>
     );
   }
