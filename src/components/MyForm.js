@@ -2,82 +2,99 @@ import React from "react";
 
 export default class MyForm extends React.Component {
   state = {
-    title: "",
+    gender: "girl",
+    adjective: "",
     name: "",
     description: "",
-    isDead: false,
+    mine: false,
   };
 
-  setTitle = (event) => {
+  handleChange = (event) => {
     this.setState({
-      title: event.target.value,
+      [event.target.name]:
+        event.target.type === "checkbox"
+          ? event.target.checked
+          : event.target.value,
     });
   };
 
-  setName = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
-  };
-
-  setDescription = (event) => {
-    this.setState({
-      description: event.target.value,
-    });
-  };
-
-  setIsDead = (event) => {
-    this.setState({
-      isDead: event.target.checked,
-    });
-  };
-
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     console.log(this.state);
   };
 
   render() {
     return (
-      <div>
-        <div>
-          {/* uncontrolled field - when you don't store the input values in states */}
-          <select onChange={this.setTitle}>
-            <option></option>
-            <option>Mr.</option>
-            <option>Ms.</option>
-            <option>Mrs.</option>
-            <option>Dr.</option>
-          </select>
+      <form onSubmit={this.handleSubmit}>
+        {/* uncontrolled field - when you don't store the input values in states */}
+        Type:
+        <input
+          id="girl"
+          type="radio"
+          name="gender"
+          value="girl"
+          onChange={this.handleChange}
+          defaultChecked
+        />
+        <label htmlFor="girl">Girl</label>
+        <input
+          id="boy"
+          type="radio"
+          name="gender"
+          value="boy"
+          onChange={this.handleChange}
+        />
+        <label htmlFor="boy">Boy</label>
+        <br />
+        <input
+          value={this.state.name}
+          name="name"
+          placeholder="John Smith"
+          onChange={this.handleChange}
+        />
+        <br />
+        <textarea
+          value={this.state.description}
+          name="description"
+          placeholder="Something about John Smith"
+          onChange={this.handleChange}
+        ></textarea>
+        <br />
+        {"Adjective: "}
+        <select
+          name="adjective"
+          onChange={this.handleChange}
+          value={this.state.title}
+        >
+          <option></option>
+          <option>good</option>
+          <option>bad</option>
+        </select>
+        <br />
+        {"Mine: "}
+        <input
+          name="mine"
+          type="checkbox"
+          checked={this.state.mine}
+          onChange={this.handleChange}
+        />
+        {this.state.name === "" ? (
           <br />
-          <input placeholder="John Smith" onChange={this.setName} />
-          <br />
-          <textarea
-            placeholder="Something about John Smith"
-            onChange={this.setDescription}
-          ></textarea>
-          <br />
-          Is Dead?{" "}
-          <input
-            type="checkbox"
-            checked={this.state.isDead}
-            onChange={this.setIsDead}
-          />
-          {this.state.name === "" ? (
-            <br />
-          ) : (
-            <div>
-              <p className={this.state.name === "" ? "hidden" : ""}>
-                {this.state.title} {this.state.name}
-                {this.state.description == ""
-                  ? " "
-                  : ", " + this.state.description + ", "}
-                is {!this.state.isDead ? "not" : ""} dead.
-              </p>
-              <button onClick={this.handleSubmit}>SUBMIT</button>
-            </div>
-          )}
-        </div>
-      </div>
+        ) : (
+          <div>
+            <p className={this.state.name === "" ? "hidden" : ""}>
+              {this.state.name}
+              {this.state.description === ""
+                ? " "
+                : ", " + this.state.description + ", "}
+              is {this.state.mine ? "my " : "a "}
+              {this.state.adjective + " "}
+              {this.state.gender}.
+            </p>
+            <button type="submit">SUBMIT</button>
+          </div>
+        )}
+      </form>
     );
   }
 }
