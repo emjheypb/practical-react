@@ -24,7 +24,7 @@ export default class ToDoHeader extends React.Component {
             style={{ display: "inline" }}
             onClick={() => this.props.toggleFilter("done")}
           >
-            Done ({this.props.todoList.filter((todo) => todo.done).length})
+            Complete ({this.props.todoList.filter((todo) => todo.done).length})
           </div>
         </h4>
       </div>

@@ -23,14 +23,9 @@ export default class ToDoList extends React.Component {
   };
 
   addToDo = (todo) => {
-    this.setState(
-      {
-        todoList: [...this.state.todoList, todo], // new to do + copy of curent todoList
-      },
-      () => {
-        console.log(this.state.todoList);
-      }
-    );
+    this.setState({
+      todoList: [...this.state.todoList, todo], // new to do + copy of curent todoList
+    });
   };
 
   toggleDone = (id) => {
@@ -56,7 +51,13 @@ export default class ToDoList extends React.Component {
 
   delete = (id) => {
     this.setState({
-      todoList: this.state.todoList.filter((todo) => todo.id != id),
+      todoList: this.state.todoList.filter((todo) => todo.id !== id),
+    });
+  };
+
+  deleteCompleted = () => {
+    this.setState({
+      todoList: this.state.todoList.filter((todo) => !todo.done),
     });
   };
 
@@ -90,6 +91,10 @@ export default class ToDoList extends React.Component {
             />
           ))
         )}
+        <br />
+        {this.state.todoList.some((todo) => todo.done) ? (
+          <button onClick={this.deleteCompleted}>Remove Completed ToDos</button>
+        ) : null}
       </div>
     );
   }
