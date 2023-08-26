@@ -32,17 +32,45 @@ export default class ToDoList extends React.Component {
     );
   };
 
+  toggleDone = (id) => {
+    this.setState(
+      {
+        todoList: this.state.todoList.map((todo) => {
+          if (todo.id === id) {
+            return {
+              ...todo, // keep same values of unmentioned properties
+              done: !todo.done,
+            };
+          } else {
+            return todo;
+          }
+        }),
+      },
+      () => {
+        console.log(this.state.todoList);
+      }
+    );
+  };
+
   render() {
     return (
       <div>
-        <ToDoHeader all={this.state.todoList.length} active={0} done={0} />
+        <ToDoHeader
+          all={this.state.todoList.length}
+          active={this.state.todoList.filter((todo) => !todo.done).length}
+          done={this.state.todoList.filter((todo) => todo.done).length}
+        />
         <ToDoForm onSubmit={this.addToDo} />
         <br />
         {!this.state.todoList.length ? (
           <div>Nothing To Do Here</div>
         ) : (
           this.state.todoList.map((todo) => (
-            <ToDo key={todo.id} todo={todo.todo} />
+            <ToDo
+              key={todo.id}
+              todo={todo}
+              toggleDone={() => this.toggleDone(todo.id)}
+            />
           ))
         )}
       </div>

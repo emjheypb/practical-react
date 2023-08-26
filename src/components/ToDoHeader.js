@@ -6,8 +6,9 @@ export default class ToDoHeader extends React.Component {
       <div>
         <h1>TO DO LIST</h1>
         <h4>
-          All ({this.props.all}) | Active ({this.props.active}) | Done (
-          {this.props.done})
+          <div style={{ display: "inline" }}>All ({this.props.all})</div> |{" "}
+          <div style={{ display: "inline" }}>Active ({this.props.active})</div>{" "}
+          | <div style={{ display: "inline" }}>Done ({this.props.done})</div>
         </h4>
       </div>
     );
