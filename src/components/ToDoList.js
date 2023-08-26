@@ -43,6 +43,14 @@ export default class ToDoList extends React.Component {
     });
   };
 
+  toggleDoneAll = (isDone) => {
+    this.setState({
+      todoList: this.state.todoList.map((todo) => {
+        return { ...todo, done: isDone };
+      }),
+    });
+  };
+
   toggleFilter = (condition) => {
     this.setState({
       filter: condition,
@@ -79,22 +87,34 @@ export default class ToDoList extends React.Component {
         />
         <ToDoForm onSubmit={this.addToDo} />
         <br />
-        {!this.state.todoList.length ? (
-          <div>Nothing To Do Here</div>
-        ) : (
-          filtered.map((todo) => (
-            <ToDo
-              key={todo.id}
-              todo={todo}
-              toggleDone={() => this.toggleDone(todo.id)}
-              delete={() => this.delete(todo.id)}
-            />
-          ))
-        )}
-        <br />
-        {this.state.todoList.some((todo) => todo.done) ? (
-          <button onClick={this.deleteCompleted}>Remove Completed ToDos</button>
-        ) : null}
+        {filtered.map((todo) => (
+          <ToDo
+            key={todo.id}
+            todo={todo}
+            toggleDone={() => this.toggleDone(todo.id)}
+            delete={() => this.delete(todo.id)}
+          />
+        ))}
+        <div>
+          {!this.state.todoList.length ? (
+            <div>Nothing To Do Here</div>
+          ) : (
+            <div>
+              <br />
+              <button onClick={() => this.toggleDoneAll(true)}>
+                Check All
+              </button>{" "}
+              <button onClick={() => this.toggleDoneAll(false)}>
+                Uncheck All
+              </button>
+            </div>
+          )}
+          {this.state.todoList.some((todo) => todo.done) ? (
+            <button onClick={this.deleteCompleted}>
+              Remove Completed ToDos
+            </button>
+          ) : null}
+        </div>
       </div>
     );
   }
