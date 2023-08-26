@@ -34,34 +34,30 @@ export default class ToDoList extends React.Component {
   };
 
   toggleDone = (id) => {
-    this.setState(
-      {
-        todoList: this.state.todoList.map((todo) => {
-          if (todo.id === id) {
-            return {
-              ...todo, // keep same values of unmentioned properties
-              done: !todo.done,
-            };
-          } else {
-            return todo;
-          }
-        }),
-      },
-      () => {
-        console.log(this.state.todoList);
-      }
-    );
+    this.setState({
+      todoList: this.state.todoList.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo, // keep same values of unmentioned properties
+            done: !todo.done,
+          };
+        } else {
+          return todo;
+        }
+      }),
+    });
   };
 
   toggleFilter = (condition) => {
-    this.setState(
-      {
-        filter: condition,
-      },
-      () => {
-        console.log(this.state.filter);
-      }
-    );
+    this.setState({
+      filter: condition,
+    });
+  };
+
+  delete = (id) => {
+    this.setState({
+      todoList: this.state.todoList.filter((todo) => todo.id != id),
+    });
   };
 
   render() {
@@ -90,6 +86,7 @@ export default class ToDoList extends React.Component {
               key={todo.id}
               todo={todo}
               toggleDone={() => this.toggleDone(todo.id)}
+              delete={() => this.delete(todo.id)}
             />
           ))
         )}
