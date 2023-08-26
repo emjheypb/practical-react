@@ -6,9 +6,26 @@ export default class ToDoHeader extends React.Component {
       <div>
         <h1>TO DO LIST</h1>
         <h4>
-          <div style={{ display: "inline" }}>All ({this.props.all})</div> |{" "}
-          <div style={{ display: "inline" }}>Active ({this.props.active})</div>{" "}
-          | <div style={{ display: "inline" }}>Done ({this.props.done})</div>
+          <div
+            style={{ display: "inline" }}
+            onClick={() => this.props.toggleFilter("")}
+          >
+            All ({this.props.todoList.length})
+          </div>{" "}
+          |{" "}
+          <div
+            style={{ display: "inline" }}
+            onClick={() => this.props.toggleFilter("active")}
+          >
+            Active ({this.props.todoList.filter((todo) => !todo.done).length})
+          </div>{" "}
+          |{" "}
+          <div
+            style={{ display: "inline" }}
+            onClick={() => this.props.toggleFilter("done")}
+          >
+            Done ({this.props.todoList.filter((todo) => todo.done).length})
+          </div>
         </h4>
       </div>
     );

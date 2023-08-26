@@ -19,6 +19,7 @@ ToDoMVC
 export default class ToDoList extends React.Component {
   state = {
     todoList: [],
+    filter: "",
   };
 
   addToDo = (todo) => {
@@ -52,20 +53,39 @@ export default class ToDoList extends React.Component {
     );
   };
 
+  toggleFilter = (condition) => {
+    this.setState(
+      {
+        filter: condition,
+      },
+      () => {
+        console.log(this.state.filter);
+      }
+    );
+  };
+
   render() {
+    let filtered = [];
+    if (this.state.filter === "") {
+      filtered = this.state.todoList;
+    } else if (this.state.filter === "active") {
+      filtered = this.state.todoList.filter((todo) => !todo.done);
+    } else {
+      filtered = this.state.todoList.filter((todo) => todo.done);
+    }
+
     return (
       <div>
         <ToDoHeader
-          all={this.state.todoList.length}
-          active={this.state.todoList.filter((todo) => !todo.done).length}
-          done={this.state.todoList.filter((todo) => todo.done).length}
+          todoList={this.state.todoList}
+          toggleFilter={this.toggleFilter}
         />
         <ToDoForm onSubmit={this.addToDo} />
         <br />
         {!this.state.todoList.length ? (
           <div>Nothing To Do Here</div>
         ) : (
-          this.state.todoList.map((todo) => (
+          filtered.map((todo) => (
             <ToDo
               key={todo.id}
               todo={todo}
