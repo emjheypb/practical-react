@@ -1,6 +1,6 @@
 import React from "react";
 
-export default (props) => (
+export const ToDo = (props) => (
   <div
     style={{
       textDecoration: props.todo.done ? "line-through" : "none",
