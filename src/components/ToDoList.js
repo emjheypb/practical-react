@@ -23,14 +23,14 @@ export default class ToDoList extends React.Component {
   };
 
   addToDo = (todo) => {
-    this.setState({
-      todoList: [...this.state.todoList, todo], // new to do + copy of curent todoList
-    });
+    this.setState((state) => ({
+      todoList: [...state.todoList, todo], // new to do + copy of curent todoList
+    }));
   };
 
   toggleDone = (id) => {
-    this.setState({
-      todoList: this.state.todoList.map((todo) => {
+    this.setState((state) => ({
+      todoList: state.todoList.map((todo) => {
         if (todo.id === id) {
           return {
             ...todo, // keep same values of unmentioned properties
@@ -40,33 +40,33 @@ export default class ToDoList extends React.Component {
           return todo;
         }
       }),
-    });
+    }));
   };
 
   toggleDoneAll = (isDone) => {
-    this.setState({
-      todoList: this.state.todoList.map((todo) => {
+    this.setState((state) => ({
+      todoList: state.todoList.map((todo) => {
         return { ...todo, done: isDone };
       }),
-    });
+    }));
   };
 
   toggleFilter = (condition) => {
-    this.setState({
+    this.setState((state) => ({
       filter: condition,
-    });
+    }));
   };
 
   delete = (id) => {
-    this.setState({
-      todoList: this.state.todoList.filter((todo) => todo.id !== id),
-    });
+    this.setState((state) => ({
+      todoList: state.todoList.filter((todo) => todo.id !== id),
+    }));
   };
 
   deleteCompleted = () => {
-    this.setState({
-      todoList: this.state.todoList.filter((todo) => !todo.done),
-    });
+    this.setState((state) => ({
+      todoList: state.todoList.filter((todo) => !todo.done),
+    }));
   };
 
   render() {

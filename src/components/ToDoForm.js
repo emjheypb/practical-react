@@ -7,9 +7,9 @@ export default class ToDoForm extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({
+    this.setState((state) => ({
       [event.target.name]: event.target.value,
-    });
+    }));
   };
 
   handleSubmit = (event) => {
@@ -19,9 +19,9 @@ export default class ToDoForm extends React.Component {
       todo: this.state.todo,
       done: false,
     });
-    this.setState({
+    this.setState((state) => ({
       todo: "",
-    });
+    }));
   };
 
   render() {
