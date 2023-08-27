@@ -1,38 +1,15 @@
-import logo from "./logo.svg";
+import { Component } from "react";
 import "./App.css";
+import ToDoList from "./components/ToDoList";
 
-const Body = () => (
-  <p className="App-intro">
-    What's up?<p>How are you?</p>
-  </p>
-);
-
-function Header() {
-  return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code>
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  );
-}
-
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Body />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <ToDoList />
+      </div>
+    );
+  }
 }
 
 export default App;
