@@ -1,7 +1,7 @@
 import React from "react";
 import ToDoForm from "./ToDoForm";
 import ToDoHeader from "./ToDoHeader";
-import ToDo from "./ToDo";
+import { ToDo } from "./ToDo";
 
 /*
 ToDoMVC
